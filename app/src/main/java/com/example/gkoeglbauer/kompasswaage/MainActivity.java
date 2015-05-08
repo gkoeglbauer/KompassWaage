@@ -12,10 +12,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        for (int i =0; i<1000;i++)
-        {
-            i +=1;
-        }
+       //Hallo Kögi du trottl
     }
 
 
