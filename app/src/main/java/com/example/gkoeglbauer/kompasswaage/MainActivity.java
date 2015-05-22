@@ -1,8 +1,8 @@
 package com.example.gkoeglbauer.kompasswaage;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void onButtonKompassClicked()
+    public void onButtonKompassClicked(View view)
     {
         Intent intent = new Intent(this, Kompass.class);
         startActivity(intent);
