@@ -28,7 +28,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Standpunkt speichern"
+            android:text="Standpunkt verwenden"
             android:id="@+id/button3"
             android:layout_gravity="center_horizontal"
             android:background="#ff6600"
@@ -45,7 +45,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Werte speichern"
+            android:text="Werte verwenden"
             android:id="@+id/button4"
             android:background="#ff6600"
             android:layout_marginTop="30px" />
