@@ -24,6 +24,10 @@
             android:name=".Activity_New_Position"
             android:label="@string/title_activity_activity__new__position" >
         </activity>
+        <activity
+            android:name=".Activity_position_select"
+            android:label="@string/title_activity_activity_position_select" >
+        </activity>
     </application>
 
 </manifest>
