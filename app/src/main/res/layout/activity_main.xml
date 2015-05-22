@@ -34,7 +34,6 @@
             android:text="Kompass"
             android:id="@+id/button_komp"
             android:background="#ff6600"
-            android:layout_marginTop="100px"
-            android:onClick="onButtonKompassClicked" />
+            android:layout_marginTop="100px" />
     </LinearLayout>
 </RelativeLayout>
