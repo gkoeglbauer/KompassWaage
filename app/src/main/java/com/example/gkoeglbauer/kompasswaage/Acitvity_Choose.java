@@ -1,5 +1,6 @@
 package com.example.gkoeglbauer.kompasswaage;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,17 @@ public class Acitvity_Choose extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_acitvity__choose, menu);
         return true;
+    }
+    public void onClickChoose()
+    {
+        Intent intent = new Intent(this, Activity_position_select.class);
+        startActivity(intent);
+    }
+
+    public void onClickNew()
+    {
+        Intent intent = new Intent(this, Activity_New_Position.class);
+        startActivity(intent);
     }
 
     @Override
