@@ -46,4 +46,10 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+    public void onButtonKompassClicked()
+    {
+        Intent intent = new Intent(this, Kompass.class);
+        startActivity(intent);
+    }
 }

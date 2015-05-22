@@ -4,9 +4,5 @@
     <string name="app_name">KompassWaage</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_actibi">Actibi</string>
-    <string name="title_activity_acitvity__choose">Acitvity_Choose</string>
-    <string name="title_activity_activity__new__position">Activity_New_Position</string>
-    <string name="title_activity_activity_position_select">Activity_position_select</string>
 
 </resources>
