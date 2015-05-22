@@ -1,5 +1,6 @@
 package com.example.gkoeglbauer.kompasswaage;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+@TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class Kompass extends Activity implements SensorEventListener {
 
     //private SQLiteDatabase db;
