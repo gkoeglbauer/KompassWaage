@@ -1,17 +1,27 @@
 package com.example.gkoeglbauer.kompasswaage;
 
+import android.app.ListActivity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
-public class Activity_position_select extends ActionBarActivity {
+public class Activity_position_select extends ListActivity {
 
+    SQLiteDatabase db;
+    public static ArrayList <String> positionList = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_position_select);
+        dislpayItems();
     }
 
     @Override
@@ -34,5 +44,30 @@ public class Activity_position_select extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void dislpayItems()
+    {
+
+        String s;
+
+        Cursor rows= db.query(
+               "Positions",
+                new String[]{"name"},
+                "id>?",
+        new String[]{"1"},
+        null,
+        null,
+        "name",
+        null);
+
+        while(rows.moveToNext())
+        {
+
+              positionList.add(rows.getString(0));
+        }
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, positionList);
+        setListAdapter(adapter);
     }
 }

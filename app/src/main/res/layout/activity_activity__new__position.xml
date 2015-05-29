@@ -23,16 +23,17 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText" />
+            android:id="@+id/TXTFname" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Standpunkt verwenden"
-            android:id="@+id/button3"
+            android:id="@+id/Standort"
             android:layout_gravity="center_horizontal"
             android:background="#ff6600"
-            android:layout_marginTop="200px" />
+            android:layout_marginTop="100dp"
+            android:onClick="onStandortClicked" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,15 +41,16 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="oder"
             android:id="@+id/textView2"
-            android:layout_marginTop="30px" />
+            android:layout_marginTop="15dp" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Werte verwenden"
-            android:id="@+id/button4"
+            android:id="@+id/Werte"
             android:background="#ff6600"
-            android:layout_marginTop="30px" />
+            android:layout_marginTop="15dp"
+            android:onClick="onWerteClicked" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,12 +58,12 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Längengrad"
             android:id="@+id/textView3"
-            android:layout_marginTop="50px" />
+            android:layout_marginTop="25dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2" />
+            android:id="@+id/TXTFlängengrad" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,11 +71,11 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Breitengrad"
             android:id="@+id/textView4"
-            android:layout_marginTop="20px" />
+            android:layout_marginTop="10dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3" />
+            android:id="@+id/TXTFbreitengrad" />
     </LinearLayout>
 </RelativeLayout>
