@@ -2,10 +2,15 @@ package com.example.gkoeglbauer.kompasswaage;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class Activity_New_Position extends ActionBarActivity {
@@ -14,6 +19,8 @@ public class Activity_New_Position extends ActionBarActivity {
     public static double laengengrad;
     public static double breitengrad;
     Boolean dbCreated = false;
+
+    private static LocationManager locMan = null;
 
     public static DBHelper dbhelper;
     public static SQLiteDatabase db;
@@ -28,6 +35,8 @@ public class Activity_New_Position extends ActionBarActivity {
             db = dbhelper.getReadableDatabase();
             dbCreated = true;
         }
+
+        locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
     }
 
     @Override
@@ -36,6 +45,20 @@ public class Activity_New_Position extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_activity__new__position, menu);
         return true;
     }
+
+    protected void onResume()
+    {
+        super.onResume();
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, (LocationListener) this);
+    }
+
+    protected void onPause()
+    {
+        super.onPause();
+        locMan.removeUpdates((LocationListener) this);
+    }
+
+
 
     public static void insertIntoDb()
     {
@@ -46,6 +69,20 @@ public class Activity_New_Position extends ActionBarActivity {
         long insertedID = db.insert("Position", null, vals);
     }
 
+    public void onStandortClicked(Location loc)
+    {
+        laengengrad = loc.getLongitude();
+        breitengrad = loc.getLatitude();
+    }
+
+    public void onWerteClicked()
+    {
+        EditText laenge = (EditText) findViewById(R.id.TXTFlängengrad);
+        laengengrad = Double.parseDouble(laenge.getText().toString());
+
+        EditText breite = (EditText) findViewById(R.id.TXTFbreitengrad);
+        breitengrad = Double.parseDouble(breite.getText().toString());
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

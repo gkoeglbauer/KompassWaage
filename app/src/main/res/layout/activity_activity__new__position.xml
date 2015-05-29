@@ -29,10 +29,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Standpunkt verwenden"
-            android:id="@+id/button3"
+            android:id="@+id/Standort"
             android:layout_gravity="center_horizontal"
             android:background="#ff6600"
-            android:layout_marginTop="100dp" />
+            android:layout_marginTop="100dp"
+            android:onClick="onStandortClicked" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,9 +47,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Werte verwenden"
-            android:id="@+id/button4"
+            android:id="@+id/Werte"
             android:background="#ff6600"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:onClick="onWerteClicked" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,7 +63,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText2" />
+            android:id="@+id/TXTFlängengrad" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,6 +76,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3" />
+            android:id="@+id/TXTFbreitengrad" />
     </LinearLayout>
 </RelativeLayout>
