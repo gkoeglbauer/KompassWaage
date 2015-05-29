@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
 
-    tools:context="com.example.gkoeglbauer.kompasswaage.Kompass"
+    tools:context="com.example.gkoeglbauer.kompasswaage.Activity_Kompass"
     android:background="#ff888888">
 
     <TextView
@@ -24,5 +24,12 @@
         android:layout_below="@+id/tvHeading"
         android:layout_centerHorizontal="true"
         android:src="@drawable/kompassdrawable" />
+
+    <ImageView
+        android:id="@+id/imageViewZeiger"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/zeiger"
+        />
 
 </RelativeLayout>

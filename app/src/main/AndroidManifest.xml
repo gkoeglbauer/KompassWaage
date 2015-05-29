@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Kompass"/>
+        <activity android:name=".Activity_Compass"/>
         <activity android:name=".Activity_position_select"/>
         <activity android:name=".Activity_New_Position"/>
         <activity android:name=".Acitvity_Choose"/>
