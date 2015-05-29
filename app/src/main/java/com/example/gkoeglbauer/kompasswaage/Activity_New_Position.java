@@ -1,5 +1,7 @@
 package com.example.gkoeglbauer.kompasswaage;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -8,10 +10,24 @@ import android.view.MenuItem;
 
 public class Activity_New_Position extends ActionBarActivity {
 
+    public static String name;
+    public static double laengengrad;
+    public static double breitengrad;
+    Boolean dbCreated = false;
+
+    public static DBHelper dbhelper;
+    public static SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity__new__position);
+
+        if(dbCreated==false) {
+            dbhelper = new DBHelper(this);
+            db = dbhelper.getReadableDatabase();
+            dbCreated = true;
+        }
     }
 
     @Override
@@ -20,6 +36,16 @@ public class Activity_New_Position extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_activity__new__position, menu);
         return true;
     }
+
+    public static void insertIntoDb()
+    {
+        ContentValues vals = new ContentValues();
+        vals.put("name", name);
+        vals.put("laenge", laengengrad);
+        vals.put("breite", breitengrad);
+        long insertedID = db.insert("Position", null, vals);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

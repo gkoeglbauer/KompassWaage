@@ -11,18 +11,13 @@ import android.view.View;
 
 public class MainActivity extends ActionBarActivity {
 
-    Boolean dbCreated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(dbCreated==false) {
-            DBHelper dbhelper = new DBHelper(this);
-            SQLiteDatabase db = dbhelper.getReadableDatabase();
-            dbCreated = true;
-        }
+
 
     }
 
