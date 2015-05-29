@@ -18,11 +18,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(dbCreated==false)
-        {
-            DBHelper dbhelper= new DBHelper(this);
+        if(dbCreated==false) {
+            DBHelper dbhelper = new DBHelper(this);
             SQLiteDatabase db = dbhelper.getReadableDatabase();
-            dbCreated= true;
+            dbCreated = true;
         }
 
     }

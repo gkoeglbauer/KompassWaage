@@ -19,11 +19,13 @@ public class DBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(PositionsTbl.SQL_CREATE);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(PositionsTbl.SQL_DROP);
 
     }
 }

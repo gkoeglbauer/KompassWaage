@@ -12,6 +12,10 @@ public class PositionsTbl {
     public final static String Längengrad = "laenge";
     public final static String Breitengrad= "breite";
 
+    public final static String[] ALL_COLUMNS = new String[]{id + " AS _id", Name, Längengrad, Breitengrad};
+
+
+    public final static String SQL_DROP = "DROP TABLE IF EXISTS " + TABLE_NAME;
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_NAME +
                     "(" +
