@@ -73,6 +73,11 @@ public class Activity_New_Position extends ActionBarActivity {
     {
         laengengrad = loc.getLongitude();
         breitengrad = loc.getLatitude();
+
+        EditText namen = (EditText) findViewById(R.id.TXTFname);
+        name = namen.getText().toString();
+
+        insertIntoDb();
     }
 
     public void onWerteClicked()
@@ -82,6 +87,11 @@ public class Activity_New_Position extends ActionBarActivity {
 
         EditText breite = (EditText) findViewById(R.id.TXTFbreitengrad);
         breitengrad = Double.parseDouble(breite.getText().toString());
+
+        EditText namen = (EditText) findViewById(R.id.TXTFname);
+        name = namen.getText().toString();
+
+        insertIntoDb();
     }
 
     @Override
