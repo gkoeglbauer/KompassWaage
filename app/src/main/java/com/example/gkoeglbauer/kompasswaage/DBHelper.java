@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper{
 
     final static String DB_NAME= "positions.db";
-    final static int DB_VERSION= 1;
+    final static int DB_VERSION= 2;
 
     public DBHelper(Context context)
     {
@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(PositionsTbl.SQL_DROP);
+        onCreate(db);
 
     }
 }

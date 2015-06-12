@@ -17,7 +17,6 @@ public class Activity_position_select extends ListActivity {
 
     SQLiteDatabase db;
     public static ArrayList <String> positionList = new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +48,9 @@ public class Activity_position_select extends ListActivity {
 
     private void dislpayItems()
     {
+
+        String s;
+
         Cursor rows= db.query(
                "Positions",
                 new String[]{"name"},
@@ -61,6 +63,7 @@ public class Activity_position_select extends ListActivity {
 
         while(rows.moveToNext())
         {
+
               positionList.add(rows.getString(0));
         }
 

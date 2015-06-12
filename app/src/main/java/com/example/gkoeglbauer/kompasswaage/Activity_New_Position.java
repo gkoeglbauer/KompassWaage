@@ -1,6 +1,7 @@
 package com.example.gkoeglbauer.kompasswaage;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
-public class Activity_New_Position extends ActionBarActivity {
+public class Activity_New_Position extends ActionBarActivity implements LocationListener {
 
     public static String name;
     public static double laengengrad;
@@ -49,7 +50,7 @@ public class Activity_New_Position extends ActionBarActivity {
     protected void onResume()
     {
         super.onResume();
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, (LocationListener) this);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, this);
     }
 
     protected void onPause()
@@ -66,20 +67,24 @@ public class Activity_New_Position extends ActionBarActivity {
         vals.put("name", name);
         vals.put("laenge", laengengrad);
         vals.put("breite", breitengrad);
-        long insertedID = db.insert("Position", null, vals);
+        long insertedID = db.insert("Positions", null, vals);
     }
 
-    public void onStandortClicked(Location loc)
+    public void onStandortClicked(View view)
     {
+        Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         laengengrad = loc.getLongitude();
         breitengrad = loc.getLatitude();
         EditText namen = (EditText) findViewById(R.id.TXTFname);
         name = namen.getText().toString();
 
         insertIntoDb();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
-    public void onWerteClicked()
+    public void onWerteClicked(View view)
     {
         EditText laenge = (EditText) findViewById(R.id.TXTFlängengrad);
         laengengrad = Double.parseDouble(laenge.getText().toString());
@@ -106,5 +111,25 @@ public class Activity_New_Position extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

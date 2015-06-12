@@ -21,7 +21,6 @@ public class Acitvity_Choose extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_acitvity__choose, menu);
         return true;
     }
-
     public void onClickChoose()
     {
         Intent intent = new Intent(this, Activity_position_select.class);
