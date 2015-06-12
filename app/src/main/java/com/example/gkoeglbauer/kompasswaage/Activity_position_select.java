@@ -11,17 +11,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Activity_position_select extends ListActivity {
 
     SQLiteDatabase db;
-    public static ArrayList <String> positionList = new ArrayList<String>();
+    ArrayList <String> positionList = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_position_select);
         dislpayItems();
+
     }
 
     @Override
@@ -67,7 +70,7 @@ public class Activity_position_select extends ListActivity {
               positionList.add(rows.getString(0));
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, positionList);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , positionList);
         setListAdapter(adapter);
     }
 }
