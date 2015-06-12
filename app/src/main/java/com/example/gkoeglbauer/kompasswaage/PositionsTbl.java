@@ -22,7 +22,7 @@ public class PositionsTbl {
                     Id + " INTEGER PRIMARY KEY," +
                     Name + " TEXT NOT NULL," +
                     Längengrad + " DOUBLE NOT NULL," +
-                    Breitengrad + " DOUBLE NOT NULL," +
+                    Breitengrad + " DOUBLE NOT NULL" +
                     ")";
 
     public static final String STMT_INSERT =

@@ -17,12 +17,15 @@ import java.util.List;
 public class Activity_position_select extends ListActivity {
 
     SQLiteDatabase db;
+    DBHelper dbhelper = new DBHelper(this);
     ArrayList <String> positionList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_position_select);
+        db = dbhelper.getReadableDatabase();
+
         dislpayItems();
 
     }
@@ -52,17 +55,14 @@ public class Activity_position_select extends ListActivity {
     private void dislpayItems()
     {
 
-        String s;
-
-        Cursor rows= db.query(
-               "Positions",
-                new String[]{"name"},
-                "id>?",
-        new String[]{"1"},
-        null,
-        null,
-        "name",
-        null);
+        Cursor rows = db.query(PositionsTbl.TABLE_NAME,
+                new String[]{PositionsTbl.Name},
+                null,
+                null,
+                null,
+                null,
+                PositionsTbl.Name,
+                null);
 
         while(rows.moveToNext())
         {
