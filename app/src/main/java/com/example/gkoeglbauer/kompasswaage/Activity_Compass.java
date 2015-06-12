@@ -3,11 +3,14 @@ package com.example.gkoeglbauer.kompasswaage;
 import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -23,9 +26,10 @@ public class Activity_Compass extends Activity implements SensorEventListener {
     private float currentDegree;
     private SensorManager mSensorManager;
     TextView degrees;
-    Location location;
-    double latitude;
-    double longitude;
+    Location currentLocation;
+    Location destLocation;
+    private static LocationManager locationManager = null;
+    GeomagneticField geoField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +37,14 @@ public class Activity_Compass extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_main);
         image = (ImageView) findViewById(R.id.imageViewCompass);
         image2 = (ImageView) findViewById(R.id.imageViewZeiger);
-        degrees = (TextView) findViewById(R.id.tvHeading);
+        degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        geoField = new GeomagneticField(
+                Double.valueOf(currentLocation.getLatitude()).floatValue(),
+                Double.valueOf(currentLocation.getLongitude()).floatValue(),
+                Double.valueOf(currentLocation.getAltitude()).floatValue(),
+                System.currentTimeMillis());
     }
 
     @Override
@@ -62,52 +72,36 @@ public class Activity_Compass extends Activity implements SensorEventListener {
         ra.setFillAfter(true);
         image.startAnimation(ra);
 
-        if(location!=null)
+
+        if(destLocation!=null)
         {
             RotateAnimation rotateAnimation = new RotateAnimation(
-                    Float.parseFloat(getFormattedLocationInDegree(longitude,latitude)),
+                    getDegree(),
                     -degree,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
+            rotateAnimation.setDuration(210);
+            rotateAnimation.setFillAfter(true);
+            image.startAnimation(rotateAnimation);
         }
-
         currentDegree = -degree;
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-    public void setLocation(Location location) {
-        this.location = location;
-        longitude = location.getLongitude();
-        latitude = location.getLatitude();
+
+    public void setDestLocation(Location destLocation) {
+        this.destLocation = destLocation;
     }
 
-
-    public static String getFormattedLocationInDegree(double latitude, double longitude) {
-        try {
-            int latSeconds = (int) Math.round(latitude * 3600);
-            int latDegrees = latSeconds / 3600;
-            latSeconds = Math.abs(latSeconds % 3600);
-            int latMinutes = latSeconds / 60;
-            latSeconds %= 60;
-
-            int longSeconds = (int) Math.round(longitude * 3600);
-            int longDegrees = longSeconds / 3600;
-            longSeconds = Math.abs(longSeconds % 3600);
-            int longMinutes = longSeconds / 60;
-            longSeconds %= 60;
-            String latDegree = latDegrees >= 0 ? "N" : "S";
-            String lonDegrees = latDegrees >= 0 ? "E" : "W";
-
-            return  Math.abs(latDegrees) + "°" + latMinutes + "'" + latSeconds
-                    + "\"" + latDegree +" "+ Math.abs(longDegrees) + "°" + longMinutes
-                    + "'" + longSeconds + "\"" + lonDegrees;
-        } catch (Exception e) {
-
-            return ""+ String.format("%8.5f", latitude) + "  "
-                    + String.format("%8.5f", longitude) ;
-        }
-
+    public float getDegree()
+    {
+           currentLocation= locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+           float degrees = currentLocation.bearingTo(destLocation);
+           float heading =  currentDegree;
+           heading += geoField.getDeclination();
+           heading = degrees - (degrees + heading);
+           return heading;
     }
 }
