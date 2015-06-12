@@ -39,12 +39,6 @@ public class Activity_Compass extends Activity implements SensorEventListener {
         image2 = (ImageView) findViewById(R.id.imageViewZeiger);
         degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        geoField = new GeomagneticField(
-                Double.valueOf(currentLocation.getLatitude()).floatValue(),
-                Double.valueOf(currentLocation.getLongitude()).floatValue(),
-                Double.valueOf(currentLocation.getAltitude()).floatValue(),
-                System.currentTimeMillis());
     }
 
     @Override
@@ -97,6 +91,11 @@ public class Activity_Compass extends Activity implements SensorEventListener {
 
     public float getDegree()
     {
+           geoField = new GeomagneticField(
+                Double.valueOf(currentLocation.getLatitude()).floatValue(),
+                Double.valueOf(currentLocation.getLongitude()).floatValue(),
+                Double.valueOf(currentLocation.getAltitude()).floatValue(),
+                System.currentTimeMillis());
            currentLocation= locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
            float degrees = currentLocation.bearingTo(destLocation);
            float heading =  currentDegree;
