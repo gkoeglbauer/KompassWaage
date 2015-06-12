@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class Activity_Compass extends Activity implements SensorEventListener {
+public class Activity_Compass extends ActionBarActivity implements SensorEventListener {
     private ImageView image;
     private ImageView image2;
     private float currentDegree;
@@ -34,7 +35,7 @@ public class Activity_Compass extends Activity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_kompass);
         image = (ImageView) findViewById(R.id.imageViewCompass);
         image2 = (ImageView) findViewById(R.id.imageViewZeiger);
         degrees = (TextView) findViewById(R.id.showDegrees);

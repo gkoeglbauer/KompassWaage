@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gkoeglbauer.kompasswaage" >
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -16,13 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Activity_Compass"/>
-        <activity android:name=".Activity_position_select"/>
-        <activity android:name=".Activity_New_Position"/>
-        <activity android:name=".Acitvity_Choose"/>
-
-
+        <activity android:name=".Activity_Compass" />
+        <activity android:name=".Activity_position_select" />
+        <activity android:name=".Activity_New_Position" />
+        <activity android:name=".Acitvity_Choose" />
     </application>
 
 </manifest>

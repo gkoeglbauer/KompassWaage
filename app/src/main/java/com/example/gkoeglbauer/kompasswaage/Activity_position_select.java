@@ -51,15 +51,13 @@ public class Activity_position_select extends ListActivity {
 
         String s;
 
-        Cursor rows= db.query(
-               "Positions",
-                new String[]{"name"},
-                "id>?",
-        new String[]{"1"},
-        null,
-        null,
-        "name",
-        null);
+        Cursor rows= db.query(PositionsTbl.TABLE_NAME,
+                new String[]{PositionsTbl.Name},
+                null,
+                null,
+                null,
+                PositionsTbl.Name,
+                null);
 
         while(rows.moveToNext())
         {
