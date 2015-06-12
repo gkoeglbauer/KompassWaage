@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void onButtonKompassClicked(View view)
     {
-        Intent intent = new Intent(this, Kompass.class);
+        Intent intent = new Intent(this, Activity_Compass.class);
         startActivity(intent);
     }
 }
