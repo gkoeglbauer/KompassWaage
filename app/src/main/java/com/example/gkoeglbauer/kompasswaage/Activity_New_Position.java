@@ -3,15 +3,24 @@ package com.example.gkoeglbauer.kompasswaage;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class Activity_New_Position extends ActionBarActivity implements LocationListener {
@@ -38,7 +47,10 @@ public class Activity_New_Position extends ActionBarActivity implements Location
         }
 
         locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
+        registerForContextMenu(findViewById(R.id.list_item));
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,7 +94,11 @@ public class Activity_New_Position extends ActionBarActivity implements Location
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+        Toast t = Toast.makeText(this,name+" gespeichert",Toast.LENGTH_SHORT);
+        t.show();
     }
+
 
     public void onWerteClicked(View view)
     {
@@ -96,6 +112,9 @@ public class Activity_New_Position extends ActionBarActivity implements Location
         name = namen.getText().toString();
 
         insertIntoDb();
+
+        Toast t = Toast.makeText(this,name+" gespeichert",Toast.LENGTH_SHORT);
+        t.show();
     }
 
     @Override
