@@ -29,7 +29,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Standpunkt verwenden"
-            android:id="@+id/Standort"
+            android:id="@+id/buttonActualGPS"
             android:layout_gravity="center_horizontal"
             android:background="#ff6600"
             android:layout_marginTop="100dp"
@@ -47,7 +47,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Werte verwenden"
-            android:id="@+id/Werte"
+            android:id="@+id/buttonUseData"
             android:background="#ff6600"
             android:layout_marginTop="15dp"
             android:onClick="onWerteClicked" />

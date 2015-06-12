@@ -73,7 +73,6 @@ public class Activity_New_Position extends ActionBarActivity {
     {
         laengengrad = loc.getLongitude();
         breitengrad = loc.getLatitude();
-
         EditText namen = (EditText) findViewById(R.id.TXTFname);
         name = namen.getText().toString();
 

@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Position erstellen"
-        android:id="@+id/button"
+        android:id="@+id/buttonNavigate"
         android:layout_gravity="center_horizontal"
         android:background="#ff6600"
         android:layout_above="@+id/button2"
@@ -38,7 +38,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/schatzkarte"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
+        android:layout_alignRight="@+id/buttonNavigate"
+        android:layout_alignEnd="@+id/buttonNavigate"
         android:layout_marginTop="50px" />
 </RelativeLayout>

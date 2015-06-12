@@ -24,17 +24,17 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Navigieren"
-            android:id="@+id/button_nav"
+            android:id="@+id/buttonNavigate"
             android:layout_gravity="center_horizontal"
             android:background="#ff6600"
             android:layout_marginTop="100px"
-            android:onClick="onClick"/>
+            android:onClick="onButtonNavigateClick"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Kompass"
-            android:id="@+id/button_komp"
+            android:id="@+id/buttonCompass"
             android:background="#ff6600"
             android:layout_marginTop="100px"
             android:onClick="onButtonKompassClicked"/>
