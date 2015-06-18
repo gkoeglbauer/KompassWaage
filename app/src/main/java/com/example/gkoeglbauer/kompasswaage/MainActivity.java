@@ -1,7 +1,6 @@
 package com.example.gkoeglbauer.kompasswaage;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -26,7 +25,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -41,16 +39,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
-    public void onButtonKompassClicked(View view)
-    {
+    public void onButtonKompassClicked(View view) {
         Intent intent = new Intent(this, Activity_Compass.class);
         startActivity(intent);
     }
 
-    public void onButtonNavigateClick(View view)
-    {
-        Intent intent = new Intent (this, Acitvity_Choose.class);
+    public void onButtonNavigateClick(View view) {
+        Intent intent = new Intent(this, Acitvity_Choose.class);
         startActivity(intent);
     }
 }

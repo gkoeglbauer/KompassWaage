@@ -79,6 +79,7 @@ public class Activity_Compass extends ActionBarActivity implements SensorEventLi
             rotateAnimation.setFillAfter(true);
             image.startAnimation(rotateAnimation);
         }
+
         currentDegree = -degree;
     }
 
