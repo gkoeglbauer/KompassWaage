@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class Activity_position_select extends ListActivity {
+public class Activity_position_select extends ListActivity{
 
     SQLiteDatabase db;
     public static ArrayList <String> positionList = new ArrayList<String>();
