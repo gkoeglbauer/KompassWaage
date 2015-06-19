@@ -46,13 +46,12 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         image2 = (ImageView) findViewById(R.id.imageViewZeiger);
         degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        positionID = getIntent().getExtras().getString("Positionid");
+        positionID = getIntent().getExtras().getString("pos");
     }
 
     public void getCoordinates()
     {
         String s;
-
         Cursor rows= db.query(PositionsTbl.TABLE_NAME,
                 PositionsTbl.ALL_COLUMNS,
                 PositionsTbl.Id = positionID,
@@ -61,14 +60,14 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
                 null,
                 PositionsTbl.Name,
                 null);
-    String string;
-    int läng = rows.getColumnIndex(PositionsTbl.Längengrad);
-    int breit = rows.getColumnIndex(PositionsTbl.Breitengrad);
+        String string;
+        int laeng = rows.getColumnIndex(PositionsTbl.Längengrad);
+        int breit = rows.getColumnIndex(PositionsTbl.Breitengrad);
         while(rows.moveToNext())
         {
-            längengrad = Double.parseDouble(rows.getString(läng));
+            längengrad = Double.parseDouble(rows.getString(laeng));
             breitengrad = Double.parseDouble(rows.getString(breit));
-
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!destLocation =!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
         Toast t = Toast.makeText(this, breitengrad.toString()+" Längengrad "+längengrad.toString(),Toast.LENGTH_LONG);
@@ -121,15 +120,11 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
     }
 
 
-    public void setDestLocation() {
-        this.destLocation = null;
-    }
-
     public float getDegree() {
         geoField = new GeomagneticField(
-                Double.valueOf(currentLocation.getLatitude()).floatValue(),
-                Double.valueOf(currentLocation.getLongitude()).floatValue(),
-                Double.valueOf(currentLocation.getAltitude()).floatValue(),
+                Double.valueOf(destLocation.getLatitude()).floatValue(),
+                Double.valueOf(destLocation.getLongitude()).floatValue(),
+                Double.valueOf(destLocation.getAltitude()).floatValue(),
                 System.currentTimeMillis());
         currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         float degrees = currentLocation.bearingTo(destLocation);

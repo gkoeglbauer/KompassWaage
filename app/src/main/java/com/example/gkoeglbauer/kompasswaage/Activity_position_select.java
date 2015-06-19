@@ -1,5 +1,6 @@
 package com.example.gkoeglbauer.kompasswaage;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -7,40 +8,36 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
-import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 
-public class Activity_position_select extends ListActivity{
+public class Activity_position_select extends Activity implements Fragment_Left.OnSelectionChangedListener{
 
+    Fragment_Right rightFragment;
     SQLiteDatabase db;
-    public static ArrayList <String> positionList = new ArrayList<String>();
+    boolean showRight = false;
+    public ArrayList <Class_Position> positionList;
+    public ArrayList <String> positions;
+    ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ListView lv1 = (ListView) findViewById(R.id.textView);
-        registerForContextMenu(lv1);
-        lv1.setOnItemClickListener((AdapterView.OnItemClickListener) this);
-        DBHelper helper = new DBHelper(this);
-        db = helper.getReadableDatabase();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_position_select);
+        positionList  = new ArrayList<>();
         dislpayItems();
-
-    }
-
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo)
-    {
-        super.onCreateContextMenu(menu, view, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);
+        Fragment_Right.setPositionList(positionList);
+        Fragment_Right.setPositions(positions);
+        Fragment_Left.setPositionList(positionList);
+        Fragment_Left.setPositions(positions);
+        rightFragment = (Fragment_Right) getFragmentManager().findFragmentById(R.id.fragRight);
+        showRight = rightFragment != null && rightFragment.isInLayout();
+        listView = (ListView)findViewById(R.id.listPositions);
     }
 
     @Override
@@ -71,32 +68,45 @@ public class Activity_position_select extends ListActivity{
         String s;
 
         Cursor rows= db.query(PositionsTbl.TABLE_NAME,
-                new String[]{PositionsTbl.Name},
+                new String[]{PositionsTbl.Name,PositionsTbl.Breitengrad,PositionsTbl.Längengrad},
                 null,
                 null,
                 null,
-                null,
-                null,
+                PositionsTbl.Name,
                 null);
 
         while(rows.moveToNext())
         {
-
-              positionList.add(rows.getString(0));
+            String name = rows.getString(rows.getColumnIndex(PositionsTbl.Name));
+            int bgrad = rows.getInt(rows.getColumnIndex(PositionsTbl.Breitengrad));
+            int lgrad = rows.getInt(rows.getColumnIndex(PositionsTbl.Längengrad));
+            positionList.add(new Class_Position(name,bgrad,lgrad));
+            positions.add(rows.getString(rows.getColumnIndex(PositionsTbl.Name)));
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, positionList);
-        setListAdapter(adapter);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, positions);
+        listView.setAdapter(adapter);
     }
+
+
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        String POSid = positionList.get(position);
-        Intent i = new Intent(Activity_position_select.this,Activity_Navigate.class);
-        i.putExtra("Positionid",POSid);
-        startActivity(i);
+    public void onSelectionCHanged(int pos, String item) {
+        if(showRight)
+        {
+            rightFragment.show(pos, item);
+        }
+        else
+        {
+            showFragmentActivity(pos, item);
+        }
+    }
 
-
+    private void showFragmentActivity(int pos, String item) {
+        Intent intent = new Intent(this, Activity_position_select_right.class);
+        intent.putExtra("POS", pos);
+        intent.putExtra("ITEM", item);
+        startActivity(intent);
     }
 }
+
