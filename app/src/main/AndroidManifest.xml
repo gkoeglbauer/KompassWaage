@@ -18,10 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Compass" />
+        <activity android:name=".Activity_Compass"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activity_position_select" />
         <activity android:name=".Activity_New_Position" />
         <activity android:name=".Acitvity_Choose" />
+        <activity android:name=".Activity_Navigate"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

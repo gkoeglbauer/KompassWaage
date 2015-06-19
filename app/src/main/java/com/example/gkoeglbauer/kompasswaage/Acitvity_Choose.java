@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class Acitvity_Choose extends ActionBarActivity {
@@ -21,13 +22,13 @@ public class Acitvity_Choose extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_acitvity__choose, menu);
         return true;
     }
-    public void onClickChoose()
+    public void onClickChoose(View view)
     {
         Intent intent = new Intent(this, Activity_position_select.class);
         startActivity(intent);
     }
 
-    public void onClickNew()
+    public void onClickNew(View view)
     {
         Intent intent = new Intent(this, Activity_New_Position.class);
         startActivity(intent);

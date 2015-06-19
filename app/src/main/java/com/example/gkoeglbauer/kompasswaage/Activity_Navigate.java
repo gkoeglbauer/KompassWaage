@@ -1,5 +1,7 @@
 package com.example.gkoeglbauer.kompasswaage;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by gkoeglbauer on 18.06.2015.
@@ -27,16 +30,51 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
     Location destLocation;
     private static LocationManager locationManager = null;
     GeomagneticField geoField;
+    String positionID;
+    Double längengrad;
+    Double breitengrad;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DBHelper helper= new DBHelper(this);
+        db = helper.getReadableDatabase();
+        getCoordinates();
         setContentView(R.layout.activity_navigate);
         image = (ImageView) findViewById(R.id.imageViewCompass);
         image2 = (ImageView) findViewById(R.id.imageViewZeiger);
         degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        positionID = getIntent().getExtras().getString("Positionid");
     }
+
+    public void getCoordinates()
+    {
+        String s;
+
+        Cursor rows= db.query(PositionsTbl.TABLE_NAME,
+                PositionsTbl.ALL_COLUMNS,
+                PositionsTbl.Id = positionID,
+                null,
+                null,
+                null,
+                PositionsTbl.Name,
+                null);
+    String string;
+    int läng = rows.getColumnIndex(PositionsTbl.Längengrad);
+    int breit = rows.getColumnIndex(PositionsTbl.Breitengrad);
+        while(rows.moveToNext())
+        {
+            längengrad = Double.parseDouble(rows.getString(läng));
+            breitengrad = Double.parseDouble(rows.getString(breit));
+
+        }
+
+        Toast t = Toast.makeText(this, breitengrad.toString()+" Längengrad "+längengrad.toString(),Toast.LENGTH_LONG);
+        t.show();
+    }
+
 
     @Override
     protected void onResume() {

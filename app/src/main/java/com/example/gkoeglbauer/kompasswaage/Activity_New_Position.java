@@ -42,12 +42,12 @@ public class Activity_New_Position extends ActionBarActivity implements Location
 
         if(dbCreated==false) {
             dbhelper = new DBHelper(this);
-            db = dbhelper.getReadableDatabase();
+            db = dbhelper.getWritableDatabase();
             dbCreated = true;
         }
 
         locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
-        registerForContextMenu(findViewById(R.id.list_item));
+
     }
 
 
@@ -134,6 +134,7 @@ public class Activity_New_Position extends ActionBarActivity implements Location
 
     @Override
     public void onLocationChanged(Location location) {
+
     }
 
     @Override

@@ -7,7 +7,7 @@ public class PositionsTbl {
 
     public static final String TABLE_NAME = "Positions";
 
-    public final static String Id = "Id";
+    public static String Id = "Id";
     public final static String Name= "Name";
     public final static String Längengrad = "Laenge";
     public final static String Breitengrad= "Breite";

@@ -25,7 +25,7 @@ public class Activity_Compass extends ActionBarActivity implements SensorEventLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_kompass);
         image = (ImageView) findViewById(R.id.imageViewCompass);
         degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
