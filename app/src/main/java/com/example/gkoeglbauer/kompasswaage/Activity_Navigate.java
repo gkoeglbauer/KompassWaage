@@ -67,8 +67,11 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         {
             längengrad = Double.parseDouble(rows.getString(laeng));
             breitengrad = Double.parseDouble(rows.getString(breit));
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!destLocation =!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            destLocation.setLongitude(längengrad);
+            destLocation.setLatitude(breitengrad);
+            destLocation.setAltitude(0.0);
         }
+
 
         Toast t = Toast.makeText(this, breitengrad.toString()+" Längengrad "+längengrad.toString(),Toast.LENGTH_LONG);
         t.show();
