@@ -21,6 +21,7 @@ public class Activity_position_select extends Activity implements Fragment_Left.
 
     Fragment_Right rightFragment;
     SQLiteDatabase db;
+    SQLiteDatabase db2;
     boolean showRight = false;
     public ArrayList <Class_Position> positionList;
     public ArrayList <String> positions;
@@ -28,6 +29,9 @@ public class Activity_position_select extends Activity implements Fragment_Left.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DBHelper helper = new DBHelper(this);
+        db=helper.getReadableDatabase();
+        db= helper.getWritableDatabase();
         setContentView(R.layout.activity_activity_position_select);
         positionList  = new ArrayList<>();
         dislpayItems();
@@ -72,16 +76,17 @@ public class Activity_position_select extends Activity implements Fragment_Left.
                 null,
                 null,
                 null,
+                null,
                 PositionsTbl.Name,
                 null);
 
         while(rows.moveToNext())
         {
             String name = rows.getString(rows.getColumnIndex(PositionsTbl.Name));
-            int bgrad = rows.getInt(rows.getColumnIndex(PositionsTbl.Breitengrad));
-            int lgrad = rows.getInt(rows.getColumnIndex(PositionsTbl.Längengrad));
+            double bgrad = rows.getDouble(rows.getColumnIndex(PositionsTbl.Breitengrad));
+            double lgrad = rows.getDouble(rows.getColumnIndex(PositionsTbl.Längengrad));
             positionList.add(new Class_Position(name,bgrad,lgrad));
-            positions.add(rows.getString(rows.getColumnIndex(PositionsTbl.Name)));
+            positions.add(name);
         }
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, positions);

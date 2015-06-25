@@ -21,8 +21,8 @@ public class Fragment_Right extends Fragment {
     TextView longitude;
     TextView latitude;
     String sname;
-    int slongitude;
-    int slatitude;
+    double slongitude;
+    double slatitude;
     int pos;
 
     public static ArrayList<Class_Position> positionList = new ArrayList<Class_Position>();

@@ -5,9 +5,9 @@ package com.example.gkoeglbauer.kompasswaage;
  */
 public class Class_Position{
     private String name;
-    private int lgrad,bgrad;
+    private double lgrad,bgrad;
 
-    public Class_Position(String name, int lgrad, int bgrad) {
+    public Class_Position(String name, double lgrad, double bgrad) {
         this.name = name;
         this.lgrad = lgrad;
         this.bgrad = bgrad;
@@ -21,7 +21,7 @@ public class Class_Position{
         this.name = name;
     }
 
-    public int getLgrad() {
+    public double getLgrad() {
         return lgrad;
     }
 
@@ -29,7 +29,7 @@ public class Class_Position{
         this.lgrad = lgrad;
     }
 
-    public int getBgrad() {
+    public double getBgrad() {
         return bgrad;
     }
 
