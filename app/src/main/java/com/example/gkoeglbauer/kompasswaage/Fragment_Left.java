@@ -1,6 +1,8 @@
 package com.example.gkoeglbauer.kompasswaage;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -22,12 +24,13 @@ public class Fragment_Left extends Fragment {
     public static ArrayList <String> positions = new ArrayList<String>();
     private OnSelectionChangedListener listener;
 
-    public static void setPositionList(ArrayList<Class_Position> positionList) {
-        positionList = positionList;
+    public static void setPositionList(ArrayList<Class_Position> positionListe) {
+        positionList = positionListe;
     }
 
-    public static void setPositions(ArrayList<String> positions) {
-        positions = positions;
+    public static void setPositions(ArrayList<String> positionslist) {
+        positions = positionslist;
+
     }
 
     @Nullable
@@ -39,10 +42,12 @@ public class Fragment_Left extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   entrySelected(position);
+                entrySelected(position);
             }
         });
+
         return view;
+
     }
 
     public interface OnSelectionChangedListener

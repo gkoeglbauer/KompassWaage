@@ -22,6 +22,7 @@
         <activity android:name=".Activity_position_select" />
         <activity android:name=".Activity_New_Position" />
         <activity android:name=".Acitvity_Choose" />
+        <activity android:name=".Activity_position_select_right" />
     </application>
 
 </manifest>

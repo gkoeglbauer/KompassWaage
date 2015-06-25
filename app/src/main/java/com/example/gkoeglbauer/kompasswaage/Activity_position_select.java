@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class Activity_position_select extends Activity implements Fragment_Left.OnSelectionChangedListener{
 
     Fragment_Right rightFragment;
+    Fragment_Left leftFragment;
     SQLiteDatabase db;
     SQLiteDatabase db2;
     boolean showRight = false;
@@ -38,6 +39,7 @@ public class Activity_position_select extends Activity implements Fragment_Left.
 
 
         rightFragment = (Fragment_Right) getFragmentManager().findFragmentById(R.id.fragRight);
+        leftFragment = (Fragment_Left) getFragmentManager().findFragmentById(R.id.fragLeft);
         showRight = rightFragment != null && rightFragment.isInLayout();
         listView = (ListView)findViewById(R.id.listPositions);
         dislpayItems();
@@ -87,10 +89,10 @@ public class Activity_position_select extends Activity implements Fragment_Left.
             positionList.add(new Class_Position(name,bgrad,lgrad));
             positions.add(name);
         }
-        Fragment_Right.setPositionList(positionList);
-        Fragment_Right.setPositions(positions);
-        Fragment_Left.setPositionList(positionList);
-        Fragment_Left.setPositions(positions);
+        rightFragment.setPositionList(positionList);
+        rightFragment.setPositions(positions);
+        leftFragment.setPositionList(positionList);
+        leftFragment.setPositions(positions);
 
 
     }
