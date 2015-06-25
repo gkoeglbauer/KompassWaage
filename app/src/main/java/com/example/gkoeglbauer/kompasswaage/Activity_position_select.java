@@ -18,30 +18,31 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class Activity_position_select extends Activity implements Fragment_Left.OnSelectionChangedListener{
+public class Activity_position_select extends Activity implements Fragment_Left.OnSelectionChangedListener {
 
     Fragment_Right rightFragment;
     Fragment_Left leftFragment;
     SQLiteDatabase db;
     SQLiteDatabase db2;
     boolean showRight = false;
-    public ArrayList <Class_Position> positionList;
-    public ArrayList <String> positions = new ArrayList<String>();
+    public ArrayList<Class_Position> positionList;
+    public ArrayList<String> positions = new ArrayList<String>();
     ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DBHelper helper = new DBHelper(this);
-        db=helper.getReadableDatabase();
+        db = helper.getReadableDatabase();
 
         setContentView(R.layout.activity_activity_position_select);
-        positionList  = new ArrayList<>();
+        positionList = new ArrayList<>();
 
 
         rightFragment = (Fragment_Right) getFragmentManager().findFragmentById(R.id.fragRight);
         leftFragment = (Fragment_Left) getFragmentManager().findFragmentById(R.id.fragLeft);
         showRight = rightFragment != null && rightFragment.isInLayout();
-        listView = (ListView)findViewById(R.id.listPositions);
+        listView = (ListView) findViewById(R.id.listPositions);
         dislpayItems();
     }
 
@@ -67,13 +68,11 @@ public class Activity_position_select extends Activity implements Fragment_Left.
         return super.onOptionsItemSelected(item);
     }
 
-    private void dislpayItems()
-    {
-
+    private void dislpayItems() {
         String s;
 
-        Cursor rows= db.query(PositionsTbl.TABLE_NAME,
-                new String[]{PositionsTbl.Name,PositionsTbl.Breitengrad,PositionsTbl.Längengrad},
+        Cursor rows = db.query(PositionsTbl.TABLE_NAME,
+                new String[]{PositionsTbl.Name, PositionsTbl.Breitengrad, PositionsTbl.Längengrad},
                 null,
                 null,
                 null,
@@ -81,32 +80,25 @@ public class Activity_position_select extends Activity implements Fragment_Left.
                 PositionsTbl.Name,
                 null);
 
-        while(rows.moveToNext())
-        {
+        while (rows.moveToNext()) {
             String name = rows.getString(rows.getColumnIndex(PositionsTbl.Name));
             double bgrad = rows.getDouble(rows.getColumnIndex(PositionsTbl.Breitengrad));
             double lgrad = rows.getDouble(rows.getColumnIndex(PositionsTbl.Längengrad));
-            positionList.add(new Class_Position(name,bgrad,lgrad));
+            positionList.add(new Class_Position(name, bgrad, lgrad));
             positions.add(name);
         }
+
         rightFragment.setPositionList(positionList);
         rightFragment.setPositions(positions);
         leftFragment.setPositionList(positionList);
         leftFragment.setPositions(positions);
-
-
     }
 
 
-
-    @Override
     public void onSelectionCHanged(int pos, String item) {
-        if(showRight)
-        {
+        if (showRight) {
             rightFragment.show(pos, item);
-        }
-        else
-        {
+        } else {
             showFragmentActivity(pos, item);
         }
     }

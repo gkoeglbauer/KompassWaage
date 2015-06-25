@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class Activity_position_select_right extends ActionBarActivity {
@@ -15,8 +16,7 @@ public class Activity_position_select_right extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         int orientation = getResources().getConfiguration().orientation;
-        if(orientation== Configuration.ORIENTATION_LANDSCAPE)
-        {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             finish();
             return;
         }
@@ -26,11 +26,11 @@ public class Activity_position_select_right extends ActionBarActivity {
 
     private void handleIntent() {
         Intent intent = getIntent();
-        if(intent == null) return;
-        Fragment_Right rightFragment = (Fragment_Right)getFragmentManager().findFragmentById(R.id.fragRight);
+        if (intent == null) return;
+        Fragment_Right rightFragment = (Fragment_Right) getFragmentManager().findFragmentById(R.id.fragRight);
         int pos = intent.getIntExtra("POS", -1);
         String item = "Unknown";
-        if(intent.hasExtra("ITEM")) item = intent.getStringExtra("ITEM");
+        if (intent.hasExtra("ITEM")) item = intent.getStringExtra("ITEM");
         rightFragment.show(pos, item);
     }
 
@@ -55,5 +55,12 @@ public class Activity_position_select_right extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onButtonUsePositionClicked(View view) {
+        int pos = Fragment_Right.getPosition();
+        Intent intent = new Intent(this, Activity_Navigate.class);
+        intent.putExtra("pos", pos);
+        startActivity(intent);
     }
 }

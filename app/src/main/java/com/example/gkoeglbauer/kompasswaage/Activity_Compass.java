@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class Activity_Compass extends ActionBarActivity implements SensorEventListener{
+public class Activity_Compass extends ActionBarActivity implements SensorEventListener {
 
     private ImageView image;
     private float currentDegree;
@@ -59,6 +59,7 @@ public class Activity_Compass extends ActionBarActivity implements SensorEventLi
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
 
 }

@@ -7,13 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by felixdeixler on 29.05.15.
  */
-public class DBHelper extends SQLiteOpenHelper{
+public class DBHelper extends SQLiteOpenHelper {
 
-    final static String DB_NAME= "positions.db";
-    final static int DB_VERSION= 2;
+    final static String DB_NAME = "positions.db";
+    final static int DB_VERSION = 2;
 
-    public DBHelper(Context context)
-    {
+    public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

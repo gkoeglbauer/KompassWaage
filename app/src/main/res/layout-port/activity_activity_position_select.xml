@@ -2,22 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:contect=".Activity_position_select">
 
         <fragment
             android:id="@+id/fragLeft"
             android:name="com.example.gkoeglbauer.kompasswaage.Fragment_Left"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-    <fragment
-        android:id="@+id/fragRight"
-        android:name="com.example.gkoeglbauer.kompasswaage.Fragment_Right"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
+            android:layout_height="match_parent"/>
 
 
 

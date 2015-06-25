@@ -11,17 +11,26 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Compass" />
+
+        <activity android:name=".Activity_Compass"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".Activity_position_select" />
-        <activity android:name=".Activity_New_Position" />
-        <activity android:name=".Acitvity_Choose" />
+
+        <activity android:name=".Activity_New_Position"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Acitvity_Choose"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".Activity_position_select_right" />
     </application>
 

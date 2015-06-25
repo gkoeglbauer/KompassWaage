@@ -23,10 +23,10 @@ public class Fragment_Right extends Fragment {
     String sname;
     double slongitude;
     double slatitude;
-    int pos;
+    static int position;
 
     public static ArrayList<Class_Position> positionList = new ArrayList<Class_Position>();
-    public static ArrayList <String> positions;
+    public static ArrayList<String> positions;
 
     @Nullable
     @Override
@@ -44,31 +44,28 @@ public class Fragment_Right extends Fragment {
         super.onStart();
     }
 
-    public static void setPositionList(ArrayList<Class_Position> positionList) {
-        Fragment_Right.positionList = positionList;
+    public static void setPositionList(ArrayList<Class_Position> positionList1) {
+        positionList = positionList1;
     }
 
-    public static void setPositions(ArrayList<String> positions) {
-        Fragment_Right.positions = positions;
+    public static void setPositions(ArrayList<String> positions1) {
+        positions = positions1;
     }
 
-    public void show(int pos, String item)
-    {
-        pos=pos;
-        Class_Position class_position= positionList.get(pos);
-        sname = class_position.getName();
-        slongitude = class_position.getLgrad();
-        slatitude= class_position.getBgrad();
+    public void show(int pos, String item) {
+        position = pos;
+
+        Class_Position positions = (Class_Position)positionList.get(position);
+        sname = positions.getName();
+        slongitude = positions.getLgrad();
+        slatitude = positions.getBgrad();
 
         name.setText(sname);
         longitude.setText(longitude.toString());
         latitude.setText(latitude.toString());
     }
 
-    public void onButtonUsePositionClicked()
-    {
-        Intent intent = new Intent(getActivity(), Activity_Navigate.class);
-        intent.putExtra("pos", pos);
-        startActivity(intent);
+    public static int getPosition() {
+        return position;
     }
 }

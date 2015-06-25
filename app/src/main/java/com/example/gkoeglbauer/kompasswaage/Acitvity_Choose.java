@@ -22,14 +22,13 @@ public class Acitvity_Choose extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_acitvity__choose, menu);
         return true;
     }
-    public void onClickChoose(View view)
-    {
+
+    public void onClickChoose(View view) {
         Intent intent = new Intent(this, Activity_position_select.class);
         startActivity(intent);
     }
 
-    public void onClickNew(View view)
-    {
+    public void onClickNew(View view) {
         Intent intent = new Intent(this, Activity_New_Position.class);
         startActivity(intent);
     }

@@ -3,14 +3,17 @@ package com.example.gkoeglbauer.kompasswaage;
 /**
  * Created by gkoeglbauer on 19.06.2015.
  */
-public class Class_Position{
+public class Class_Position {
     private String name;
-    private double lgrad,bgrad;
+    private double lgrad, bgrad;
 
     public Class_Position(String name, double lgrad, double bgrad) {
         this.name = name;
         this.lgrad = lgrad;
         this.bgrad = bgrad;
+    }
+
+    public Class_Position() {
     }
 
     public String getName() {

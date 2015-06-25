@@ -8,11 +8,11 @@ public class PositionsTbl {
     public static final String TABLE_NAME = "Positions";
 
     public static String Id = "Id";
-    public final static String Name= "Name";
+    public final static String Name = "Name";
     public final static String Längengrad = "Laenge";
-    public final static String Breitengrad= "Breite";
+    public final static String Breitengrad = "Breite";
 
-    public final static String[] ALL_COLUMNS = new String[] { Id + " AS _id", Name, Längengrad, Breitengrad };
+    public final static String[] ALL_COLUMNS = new String[]{Id + " AS _id", Name, Längengrad, Breitengrad};
 
 
     public final static String SQL_DROP = "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -29,7 +29,6 @@ public class PositionsTbl {
             "INSERT INTO " + TABLE_NAME +
                     "(" + Name + "," + Längengrad + "," + Breitengrad + ") " +
                     "VALUES (?,?,?)";
-
 
 
 }

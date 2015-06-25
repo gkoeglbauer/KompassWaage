@@ -38,7 +38,7 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DBHelper helper= new DBHelper(this);
+        DBHelper helper = new DBHelper(this);
         db = helper.getReadableDatabase();
         getCoordinates();
         setContentView(R.layout.activity_navigate);
@@ -49,10 +49,9 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         positionID = getIntent().getExtras().getString("pos");
     }
 
-    public void getCoordinates()
-    {
+    public void getCoordinates() {
         String s;
-        Cursor rows= db.query(PositionsTbl.TABLE_NAME,
+        Cursor rows = db.query(PositionsTbl.TABLE_NAME,
                 PositionsTbl.ALL_COLUMNS,
                 PositionsTbl.Id = positionID,
                 null,
@@ -63,8 +62,7 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         String string;
         int laeng = rows.getColumnIndex(PositionsTbl.Längengrad);
         int breit = rows.getColumnIndex(PositionsTbl.Breitengrad);
-        while(rows.moveToNext())
-        {
+        while (rows.moveToNext()) {
             längengrad = Double.parseDouble(rows.getString(laeng));
             breitengrad = Double.parseDouble(rows.getString(breit));
             destLocation.setLongitude(längengrad);
@@ -73,7 +71,7 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         }
 
 
-        Toast t = Toast.makeText(this, breitengrad.toString()+" Längengrad "+längengrad.toString(),Toast.LENGTH_LONG);
+        Toast t = Toast.makeText(this, breitengrad.toString() + " Längengrad " + längengrad.toString(), Toast.LENGTH_LONG);
         t.show();
     }
 

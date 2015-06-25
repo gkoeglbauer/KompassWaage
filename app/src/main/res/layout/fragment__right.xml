@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:text="Position verwenden "
             android:id="@+id/buttonUsePosition"
-            android:onClick="onButtonUsePositionClicked" />
+            android:onClick="onButtonUsePositionClicked"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/fragRight"
         android:name="com.example.gkoeglbauer.kompasswaage.Fragment_Right"
-        android:layout_width="match_parent"
-        android:layout_height="275dp" />
-    <fragment
-        android:id="@+id/fragLeft"
-        android:name="com.example.gkoeglbauer.kompasswaage.Fragment_Left"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

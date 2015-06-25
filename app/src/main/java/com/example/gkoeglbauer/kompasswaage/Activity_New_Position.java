@@ -40,7 +40,7 @@ public class Activity_New_Position extends ActionBarActivity implements Location
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity__new__position);
 
-        if(dbCreated==false) {
+        if (dbCreated == false) {
             dbhelper = new DBHelper(this);
             db = dbhelper.getWritableDatabase();
             dbCreated = true;
@@ -51,7 +51,6 @@ public class Activity_New_Position extends ActionBarActivity implements Location
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -59,22 +58,18 @@ public class Activity_New_Position extends ActionBarActivity implements Location
         return true;
     }
 
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, this);
     }
 
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         locMan.removeUpdates((LocationListener) this);
     }
 
 
-
-    public static void insertIntoDb()
-    {
+    public static void insertIntoDb() {
         ContentValues vals = new ContentValues();
         vals.put("name", name);
         vals.put("laenge", laengengrad);
@@ -82,8 +77,7 @@ public class Activity_New_Position extends ActionBarActivity implements Location
         long insertedID = db.insert("Positions", null, vals);
     }
 
-    public void onStandortClicked(View view)
-    {
+    public void onStandortClicked(View view) {
         Location loc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         laengengrad = loc.getLongitude();
         breitengrad = loc.getLatitude();
@@ -95,13 +89,12 @@ public class Activity_New_Position extends ActionBarActivity implements Location
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
-        Toast t = Toast.makeText(this,name+" gespeichert",Toast.LENGTH_SHORT);
+        Toast t = Toast.makeText(this, name + " gespeichert", Toast.LENGTH_SHORT);
         t.show();
     }
 
 
-    public void onWerteClicked(View view)
-    {
+    public void onWerteClicked(View view) {
         EditText laenge = (EditText) findViewById(R.id.TXTFlängengrad);
         laengengrad = Double.parseDouble(laenge.getText().toString());
 
@@ -113,7 +106,7 @@ public class Activity_New_Position extends ActionBarActivity implements Location
 
         insertIntoDb();
 
-        Toast t = Toast.makeText(this,name+" gespeichert",Toast.LENGTH_SHORT);
+        Toast t = Toast.makeText(this, name + " gespeichert", Toast.LENGTH_SHORT);
         t.show();
     }
 

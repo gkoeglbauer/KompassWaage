@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class Fragment_Left extends Fragment {
 
     ListView listView;
-    public static ArrayList <Class_Position> positionList = new ArrayList<Class_Position>();
-    public static ArrayList <String> positions = new ArrayList<String>();
+    public static ArrayList<Class_Position> positionList = new ArrayList<Class_Position>();
+    public static ArrayList<String> positions = new ArrayList<String>();
     private OnSelectionChangedListener listener;
 
     public static void setPositionList(ArrayList<Class_Position> positionListe) {
@@ -50,9 +50,8 @@ public class Fragment_Left extends Fragment {
 
     }
 
-    public interface OnSelectionChangedListener
-    {
-        public void onSelectionCHanged(int pos,String item);
+    public interface OnSelectionChangedListener {
+        public void onSelectionCHanged(int pos, String item);
     }
 
     @Override
@@ -65,17 +64,14 @@ public class Fragment_Left extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if(activity instanceof OnSelectionChangedListener)
-        {
+        if (activity instanceof OnSelectionChangedListener) {
             listener = (OnSelectionChangedListener) activity;
         }
     }
 
-    public void entrySelected(int pos)
-    {
+    public void entrySelected(int pos) {
         String position = positions.get(pos);
-        if(listener!=null)
-        {
+        if (listener != null) {
             listener.onSelectionCHanged(pos, position);
         }
     }
