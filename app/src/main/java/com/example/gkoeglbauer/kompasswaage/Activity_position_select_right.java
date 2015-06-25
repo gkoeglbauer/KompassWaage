@@ -33,4 +33,10 @@ public class Activity_position_select_right extends ActionBarActivity {
         if (intent.hasExtra("ITEM")) item = intent.getStringExtra("ITEM");
         rightFragment.show(pos, item);
     }
+    public void onButtonUsePositionClicked(View view) {
+        int pos = Fragment_Right.getPosition();
+        Intent intent = new Intent(this, Activity_Navigate.class);
+        intent.putExtra("POS", pos);
+        startActivity(intent);
+    }
 }

@@ -87,11 +87,6 @@ public class Activity_position_select extends Activity implements Fragment_Left.
         startActivity(intent);
     }
 
-    public void onButtonUsePositionClicked(View view) {
-        int pos = Fragment_Right.getPosition();
-        Intent intent = new Intent(this, Activity_Navigate.class);
-        intent.putExtra("POS", pos);
-        startActivity(intent);
-    }
+
 }
 

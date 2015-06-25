@@ -30,6 +30,7 @@
 
         <activity android:name=".Acitvity_Choose"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activity_Navigate"/>
 
         <activity android:name=".Activity_position_select_right" />
     </application>
