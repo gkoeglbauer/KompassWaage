@@ -46,6 +46,7 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         positionID = getIntent().getExtras().getString("POS");
+        destLocation = new Location("");
 
         getCoordinates();
     }
@@ -102,7 +103,7 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
         ra.setDuration(210);
         ra.setFillAfter(true);
         image.startAnimation(ra);
-
+        currentDegree = -degree;
 
         if (destLocation != null) {
             RotateAnimation rotateAnimation = new RotateAnimation(
@@ -113,9 +114,8 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
             rotateAnimation.setDuration(210);
             rotateAnimation.setFillAfter(true);
             image.startAnimation(rotateAnimation);
+            currentDegree = -degree;
         }
-
-        currentDegree = -degree;
     }
 
     @Override
