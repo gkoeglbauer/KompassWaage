@@ -6,8 +6,16 @@
     tools:context="com.example.gkoeglbauer.kompasswaage.Fragment_Left">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Poition auswählen:"
+        android:id="@+id/textView6" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listPositions" />
+
 </LinearLayout>

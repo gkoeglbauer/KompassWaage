@@ -13,9 +13,6 @@ public class Class_Position {
         this.bgrad = bgrad;
     }
 
-    public Class_Position() {
-    }
-
     public String getName() {
         return name;
     }

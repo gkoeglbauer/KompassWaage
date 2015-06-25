@@ -21,36 +21,38 @@ import android.widget.Toast;
  * Created by gkoeglbauer on 18.06.2015.
  */
 public class Activity_Navigate extends ActionBarActivity implements SensorEventListener {
-    private ImageView image;
-    private ImageView image2;
+
+    private ImageView image,image2;
     private float currentDegree;
     private SensorManager mSensorManager;
     TextView degrees;
-    Location currentLocation;
-    Location destLocation;
+    Location currentLocation, destLocation;
     private static LocationManager locationManager = null;
     GeomagneticField geoField;
     String positionID;
-    Double längengrad;
-    Double breitengrad;
+    Double längengrad, breitengrad;
     SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigate);
+
         DBHelper helper = new DBHelper(this);
         db = helper.getReadableDatabase();
-        getCoordinates();
-        setContentView(R.layout.activity_navigate);
+
         image = (ImageView) findViewById(R.id.imageViewCompass);
         image2 = (ImageView) findViewById(R.id.imageViewZeiger);
         degrees = (TextView) findViewById(R.id.showDegrees);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        positionID = getIntent().getExtras().getString("pos");
+        positionID = getIntent().getExtras().getString("POS");
+
+        getCoordinates();
     }
 
     public void getCoordinates() {
         String s;
+
         Cursor rows = db.query(PositionsTbl.TABLE_NAME,
                 PositionsTbl.ALL_COLUMNS,
                 PositionsTbl.Id = positionID,
@@ -59,9 +61,10 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
                 null,
                 PositionsTbl.Name,
                 null);
-        String string;
+
         int laeng = rows.getColumnIndex(PositionsTbl.Längengrad);
         int breit = rows.getColumnIndex(PositionsTbl.Breitengrad);
+
         while (rows.moveToNext()) {
             längengrad = Double.parseDouble(rows.getString(laeng));
             breitengrad = Double.parseDouble(rows.getString(breit));
@@ -69,7 +72,6 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
             destLocation.setLatitude(breitengrad);
             destLocation.setAltitude(0.0);
         }
-
 
         Toast t = Toast.makeText(this, breitengrad.toString() + " Längengrad " + längengrad.toString(), Toast.LENGTH_LONG);
         t.show();
@@ -119,7 +121,6 @@ public class Activity_Navigate extends ActionBarActivity implements SensorEventL
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
-
 
     public float getDegree() {
         geoField = new GeomagneticField(

@@ -50,14 +50,6 @@ public class Activity_New_Position extends ActionBarActivity implements Location
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity__new__position, menu);
-        return true;
-    }
-
     protected void onResume() {
         super.onResume();
         locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, this);
@@ -108,21 +100,6 @@ public class Activity_New_Position extends ActionBarActivity implements Location
 
         Toast t = Toast.makeText(this, name + " gespeichert", Toast.LENGTH_SHORT);
         t.show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

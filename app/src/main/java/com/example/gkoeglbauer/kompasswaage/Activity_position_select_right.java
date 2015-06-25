@@ -33,34 +33,4 @@ public class Activity_position_select_right extends ActionBarActivity {
         if (intent.hasExtra("ITEM")) item = intent.getStringExtra("ITEM");
         rightFragment.show(pos, item);
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_position_select_right, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onButtonUsePositionClicked(View view) {
-        int pos = Fragment_Right.getPosition();
-        Intent intent = new Intent(this, Activity_Navigate.class);
-        intent.putExtra("pos", pos);
-        startActivity(intent);
-    }
 }

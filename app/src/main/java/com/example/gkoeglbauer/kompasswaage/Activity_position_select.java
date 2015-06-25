@@ -23,7 +23,6 @@ public class Activity_position_select extends Activity implements Fragment_Left.
     Fragment_Right rightFragment;
     Fragment_Left leftFragment;
     SQLiteDatabase db;
-    SQLiteDatabase db2;
     boolean showRight = false;
     public ArrayList<Class_Position> positionList;
     public ArrayList<String> positions = new ArrayList<String>();
@@ -44,28 +43,6 @@ public class Activity_position_select extends Activity implements Fragment_Left.
         showRight = rightFragment != null && rightFragment.isInLayout();
         listView = (ListView) findViewById(R.id.listPositions);
         dislpayItems();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_position_select, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void dislpayItems() {
@@ -107,6 +84,13 @@ public class Activity_position_select extends Activity implements Fragment_Left.
         Intent intent = new Intent(this, Activity_position_select_right.class);
         intent.putExtra("POS", pos);
         intent.putExtra("ITEM", item);
+        startActivity(intent);
+    }
+
+    public void onButtonUsePositionClicked(View view) {
+        int pos = Fragment_Right.getPosition();
+        Intent intent = new Intent(this, Activity_Navigate.class);
+        intent.putExtra("POS", pos);
         startActivity(intent);
     }
 }

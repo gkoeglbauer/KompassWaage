@@ -7,5 +7,6 @@
     <string name="title_activity_kompass_">Kompass_Activity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_activity_position_select_right">Activity_position_select_right</string>
+    <string name="UsePosition">Position verwenden</string>
 
 </resources>

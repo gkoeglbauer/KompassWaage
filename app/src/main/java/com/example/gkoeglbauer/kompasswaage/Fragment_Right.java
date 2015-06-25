@@ -21,8 +21,8 @@ public class Fragment_Right extends Fragment {
     TextView longitude;
     TextView latitude;
     String sname;
-    double slongitude;
-    double slatitude;
+    String slongitude;
+    String slatitude;
     static int position;
 
     public static ArrayList<Class_Position> positionList = new ArrayList<Class_Position>();
@@ -57,12 +57,12 @@ public class Fragment_Right extends Fragment {
 
         Class_Position positions = (Class_Position)positionList.get(position);
         sname = positions.getName();
-        slongitude = positions.getLgrad();
-        slatitude = positions.getBgrad();
+        slongitude = ""+ positions.getLgrad();
+        slatitude = ""+ positions.getBgrad();
 
         name.setText(sname);
-        longitude.setText(longitude.toString());
-        latitude.setText(latitude.toString());
+        longitude.setText(slongitude);
+        latitude.setText(slatitude);
     }
 
     public static int getPosition() {
