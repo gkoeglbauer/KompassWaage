@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,24 +25,22 @@ public class Activity_position_select extends Activity implements Fragment_Left.
     SQLiteDatabase db2;
     boolean showRight = false;
     public ArrayList <Class_Position> positionList;
-    public ArrayList <String> positions;
+    public ArrayList <String> positions = new ArrayList<String>();
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DBHelper helper = new DBHelper(this);
         db=helper.getReadableDatabase();
-        db= helper.getWritableDatabase();
+
         setContentView(R.layout.activity_activity_position_select);
         positionList  = new ArrayList<>();
-        dislpayItems();
-        Fragment_Right.setPositionList(positionList);
-        Fragment_Right.setPositions(positions);
-        Fragment_Left.setPositionList(positionList);
-        Fragment_Left.setPositions(positions);
+
+
         rightFragment = (Fragment_Right) getFragmentManager().findFragmentById(R.id.fragRight);
         showRight = rightFragment != null && rightFragment.isInLayout();
         listView = (ListView)findViewById(R.id.listPositions);
+        dislpayItems();
     }
 
     @Override
@@ -88,9 +87,12 @@ public class Activity_position_select extends Activity implements Fragment_Left.
             positionList.add(new Class_Position(name,bgrad,lgrad));
             positions.add(name);
         }
+        Fragment_Right.setPositionList(positionList);
+        Fragment_Right.setPositions(positions);
+        Fragment_Left.setPositionList(positionList);
+        Fragment_Left.setPositions(positions);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, positions);
-        listView.setAdapter(adapter);
+
     }
 
 

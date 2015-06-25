@@ -19,15 +19,15 @@ public class Fragment_Left extends Fragment {
 
     ListView listView;
     public static ArrayList <Class_Position> positionList = new ArrayList<Class_Position>();
-    public static ArrayList <String> positions;
+    public static ArrayList <String> positions = new ArrayList<String>();
     private OnSelectionChangedListener listener;
 
     public static void setPositionList(ArrayList<Class_Position> positionList) {
-        Fragment_Left.positionList = positionList;
+        positionList = positionList;
     }
 
     public static void setPositions(ArrayList<String> positions) {
-        Fragment_Left.positions = positions;
+        positions = positions;
     }
 
     @Nullable
